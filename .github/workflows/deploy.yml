@@ -31,4 +31,4 @@ jobs:
           password: EmlPage2023
           protocol: ftp
           server-dir: ./reactvite.eml.com.co/
-          local-dir: ./build
+          local-dir: ./build/
