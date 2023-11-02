@@ -1,0 +1,34 @@
+name: test-deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Node js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.9.0
+
+      - name: Install dependencies
+        run: npm i
+
+      - name: Build prod
+        run: npm run build
+
+      - name: Deploy to server
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: eml.com.co
+          username: deployeml@eml.com.co
+          password: EmlPage2023
+          protocol: ftp
+          server-dir: ./reactvite.eml.com.co/
+          local-dir: ./
